@@ -1,12 +1,14 @@
 Summary:	Library for 1394 Digital Camera Specification
 Summary(pl):	Biblioteka dla specyfikacji Kamera Cyfrowa 1394
 Name:		libdc1394
-Version:	0.9.2
+Version:	0.9.3
 Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libdc1394/%{name}-%{version}.tar.gz
-# Source0-md5:	3d268b3e9efa6efbf2e512cd4c07209b
+# Source0-md5:	c6461e1d354240bc49a931d8b7440bd6
+Patch0:		%{name}-link.patch
+URL:		http://sourceforge.net/projects/libdc1394/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -31,7 +33,7 @@ http://www.1394ta.org/).
 Summary:	libdc1394 header files
 Summary(pl):	Pliki nag³ówkowe libdc1394
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	libraw1394-devel
 
 %description devel
@@ -44,7 +46,7 @@ Pliki nag³ówkowe libdc1394.
 Summary:	Static libdc1394 library
 Summary(pl):	Statyczna biblioteka libdc1394
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libdc1394 library.
@@ -54,6 +56,7 @@ Statyczna biblioteka libdc1394.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}
