@@ -29,10 +29,10 @@ http://www.1394ta.org/).
 
 %package devel
 Summary:	libdc1394 header files
-Summary(pl):    Pliki nag³ówkowe libdc1394
+Summary(pl):	Pliki nag³ówkowe libdc1394
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
-Requires:       libraw1394-devel
+Requires:	libraw1394-devel
 
 %description devel
 libdc1394 header files.
@@ -41,10 +41,10 @@ libdc1394 header files.
 Pliki nag³ówkowe libdc1394.
 
 %package static
-Summary:        Static libdc1394 library
-Summary(pl):    Statyczna biblioteka libdc1394
-Group:          Development/Libraries
-Requires:       %{name}-devel = %{version}
+Summary:	Static libdc1394 library
+Summary(pl):	Statyczna biblioteka libdc1394
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}
 
 %description static
 Static libdc1394 library.
