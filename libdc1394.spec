@@ -12,7 +12,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libraw1394-devel
 BuildRequires:	libtool
-Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 libdc1394 is a library that is intended to provide a high level
