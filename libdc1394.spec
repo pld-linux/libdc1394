@@ -58,6 +58,8 @@ Statyczna biblioteka libdc1394.
 %setup -q
 %patch0 -p1
 
+%{__perl} -pi -e 's@-L/usr/X11R6/lib@-L/usr/X11R6/%{_lib}@' examples/Makefile.am
+
 %build
 %{__libtoolize}
 %{__aclocal}
