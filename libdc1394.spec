@@ -2,7 +2,7 @@
 # - pl fix me (?)
 #
 Summary:	Library for 1394 Digital Camera Specification
-Summary(pl):	Biblioteka dla specyfikacji 1394 Kamera Cyfrowa
+Summary(pl):	Biblioteka dla specyfikacji Kamera Cyfrowa 1394
 Name:		libdc1394
 Version:	0.9.1
 Release:	0.1
@@ -24,10 +24,11 @@ IEEE 1394 based cameras that conform to the 1394-based Digital Camera
 Specification (found at http://www.1394ta.org/).
 
 %description -l pl
-libdc1394 jest bibliotek±, której zalozeniem jest dostarczenie
+libdc1394 jest bibliotek±, której za³o¿eniem jest dostarczenie
 interfejsu wysokiego poziomu dla twórców oprogramowania, pragn±cych
-kontrolowaæ kamery zbudowane w oparciu o IEEE 1394 zgodne ze
-specyfikacj± 1394 Kamera Cyfrowa (znalezione w http://www.1394ta.org/).
+sterowaæ kamerami skonstruowanymi w oparciu o IEEE 1394 zgodnie ze
+specyfikacj± Kamera Cyfrowa 1394 (znalezione w
+http://www.1394ta.org/).
 
 %package devel
 Summary:	libdc1394 header files
