@@ -1,6 +1,3 @@
-# TODO:
-# - pl fix me (?)
-#
 Summary:	Library for 1394 Digital Camera Specification
 Summary(pl):	Biblioteka dla specyfikacji Kamera Cyfrowa 1394
 Name:		libdc1394
@@ -8,13 +5,13 @@ Version:	0.9.1
 Release:	0.1
 License:	GPL
 Group:		Libraries
-Source0:	http://download.sourceforge.net/libdc1394/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/libdc1394/%{name}-%{version}.tar.gz
 # Source0-md5:	937908cad7c03abba368d09795063ccc
-BuildRequires:  autoconf
-BuildRequires:  automake
-BuildRequires:  libraw1394-devel
-BuildRequires:  libtool
-Requires(post): /sbin/ldconfig
+BuildRequires:	XFree86-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libraw1394-devel
+BuildRequires:	libtool
 Buildroot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -25,9 +22,9 @@ Specification (found at http://www.1394ta.org/).
 
 %description -l pl
 libdc1394 jest bibliotek±, której za³o¿eniem jest dostarczenie
-interfejsu wysokiego poziomu dla twórców oprogramowania, pragn±cych
+interfejsu wysokiego poziomu dla twórców oprogramowania pragn±cych
 sterowaæ kamerami skonstruowanymi w oparciu o IEEE 1394 zgodnie ze
-specyfikacj± Kamera Cyfrowa 1394 (znalezione w
+specyfikacj± Kamera Cyfrowa 1394 (dostêpn± pod
 http://www.1394ta.org/).
 
 %package devel
@@ -84,14 +81,13 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/libdc1394_control.so.*.*.*
-%attr(755,root,root) %{_libdir}/libdc1394_control.so.*
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libdc1394_control.so
-%{_libdir}/*.la
+%{_libdir}/lib*.la
 %{_includedir}/libdc1394
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/*.a
+%{_libdir}/lib*.a
