@@ -1,0 +1,11 @@
+--- libdc1394-0.9.3/libdc1394/Makefile.am.orig	2002-09-22 17:38:20.000000000 +0200
++++ libdc1394-0.9.3/libdc1394/Makefile.am	2004-02-22 01:40:08.210376944 +0100
+@@ -3,7 +3,7 @@
+ lib_LTLIBRARIES = libdc1394_control.la
+ 
+ libdc1394_control_la_LDFLAGS = -version-info @lt_major@:@lt_revision@:@lt_age@
+-
++libdc1394_control_la_LIBADD = -lraw1394
+ libdc1394_control_la_SOURCES =  \
+ 	dc1394_control.c 	\
+ 	dc1394_capture.c	\
