@@ -1,3 +1,4 @@
+%bcond_without	static_libs	# don't build static library
 Summary:	Library for 1394 Digital Camera Specification
 Summary(pl):	Biblioteka dla specyfikacji Kamera Cyfrowa 1394
 Name:		libdc1394
@@ -64,7 +65,8 @@ Statyczna biblioteka libdc1394.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	%{!?with_static_libs:--disable-static}
 %{__make}
 
 %install
@@ -91,6 +93,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libdc1394_control.la
 %{_includedir}/libdc1394
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libdc1394_control.a
+%endif
