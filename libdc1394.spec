@@ -1,3 +1,4 @@
+#
 # Conditional build:
 %bcond_without	static_libs	# don't build static library
 #
@@ -5,14 +6,17 @@ Summary:	Library for 1394 Digital Camera Specification
 Summary(pl):	Biblioteka dla specyfikacji Kamera Cyfrowa 1394
 Name:		libdc1394
 Version:	1.1.0
-Release:	2
+Release:	3
 License:	GPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libdc1394/%{name}-%{version}.tar.gz
 # Source0-md5:	5606586f94fc5d6b4ada8d514a405d0f
 Patch0:		%{name}-link.patch
+Patch1:		%{name}-def.patch
 URL:		http://sourceforge.net/projects/libdc1394/
-BuildRequires:	XFree86-devel
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libXv-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libraw1394-devel
@@ -60,6 +64,7 @@ Statyczna biblioteka libdc1394.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
