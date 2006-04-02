@@ -14,13 +14,13 @@ Source0:	http://dl.sourceforge.net/libdc1394/%{name}-%{version}.tar.gz
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-def.patch
 URL:		http://sourceforge.net/projects/libdc1394/
-BuildRequires:	xorg-lib-libX11-devel
-BuildRequires:	xorg-lib-libXext-devel
-BuildRequires:	xorg-lib-libXv-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libraw1394-devel
 BuildRequires:	libtool
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXext-devel
+BuildRequires:	xorg-lib-libXv-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
