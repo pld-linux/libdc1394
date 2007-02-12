@@ -3,7 +3,7 @@
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Library for 1394 Digital Camera Specification
-Summary(pl):	Biblioteka dla specyfikacji Kamera Cyfrowa 1394
+Summary(pl.UTF-8):   Biblioteka dla specyfikacji Kamera Cyfrowa 1394
 Name:		libdc1394
 Version:	1.2.1
 Release:	1
@@ -29,16 +29,16 @@ programming interface for application developers who wish to control
 IEEE 1394 based cameras that conform to the 1394-based Digital Camera
 Specification (found at http://www.1394ta.org/).
 
-%description -l pl
-libdc1394 jest bibliotek±, której za³o¿eniem jest dostarczenie
-interfejsu wysokiego poziomu dla twórców oprogramowania pragn±cych
-sterowaæ kamerami skonstruowanymi w oparciu o IEEE 1394 zgodnie ze
-specyfikacj± Kamera Cyfrowa 1394 (dostêpn± pod
+%description -l pl.UTF-8
+libdc1394 jest bibliotekÄ…, ktÃ³rej zaÅ‚oÅ¼eniem jest dostarczenie
+interfejsu wysokiego poziomu dla twÃ³rcÃ³w oprogramowania pragnÄ…cych
+sterowaÄ‡ kamerami skonstruowanymi w oparciu o IEEE 1394 zgodnie ze
+specyfikacjÄ… Kamera Cyfrowa 1394 (dostÄ™pnÄ… pod
 http://www.1394ta.org/).
 
 %package devel
 Summary:	libdc1394 header files
-Summary(pl):	Pliki nag³ówkowe libdc1394
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe libdc1394
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libraw1394-devel
@@ -46,19 +46,19 @@ Requires:	libraw1394-devel
 %description devel
 libdc1394 header files.
 
-%description devel -l pl
-Pliki nag³ówkowe libdc1394.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe libdc1394.
 
 %package static
 Summary:	Static libdc1394 library
-Summary(pl):	Statyczna biblioteka libdc1394
+Summary(pl.UTF-8):   Statyczna biblioteka libdc1394
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libdc1394 library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka libdc1394.
 
 %prep
