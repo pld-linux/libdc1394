@@ -5,14 +5,13 @@
 Summary:	Library for 1394 Digital Camera Specification
 Summary(pl.UTF-8):	Biblioteka dla specyfikacji Kamera Cyfrowa 1394
 Name:		libdc1394
-Version:	1.2.1
+Version:	1.2.2
 Release:	1
-License:	GPL
+License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libdc1394/%{name}-%{version}.tar.gz
-# Source0-md5:	b3d90d2dd8e5e902cac8a32d28123b93
+# Source0-md5:	538d6df70dbe372284c8acad85ea9b4e
 Patch0:		%{name}-link.patch
-Patch1:		%{name}-def.patch
 URL:		http://sourceforge.net/projects/libdc1394/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
@@ -64,7 +63,6 @@ Statyczna biblioteka libdc1394.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
