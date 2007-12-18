@@ -2,7 +2,7 @@
 # Conditional build:
 %bcond_without	static_libs	# don't build static library
 #
-%define		_rc	rc5
+%define		_rc	rc9
 Summary:	Library for 1394 Digital Camera Specification
 Summary(pl.UTF-8):	Biblioteka dla specyfikacji Kamera Cyfrowa 1394
 Name:		libdc1394
@@ -11,7 +11,7 @@ Release:	0.%{_rc}.1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libdc1394/%{name}-%{version}-%{_rc}.tar.gz
-# Source0-md5:	dff62b3b0b0187e0253479c901a5fec3
+# Source0-md5:	8955f1eef27a22ba209355ded5d1d003
 URL:		http://sourceforge.net/projects/libdc1394/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
@@ -91,14 +91,14 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/dc1394_reset_bus
 %attr(755,root,root) %{_bindir}/dc1394_vloopback
-%attr(755,root,root) %{_libdir}/libdc1394.so.20.0.0
+%attr(755,root,root) %{_libdir}/libdc1394.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libdc1394.so
 %{_libdir}/libdc1394.la
 %{_includedir}/dc1394
-%{_pkgconfigdir}/libdc1394.pc
+%{_pkgconfigdir}/libdc1394-2.pc
 
 %if %{with static_libs}
 %files static
