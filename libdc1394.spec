@@ -2,25 +2,26 @@
 # Conditional build:
 %bcond_without	static_libs	# don't build static library
 #
-%define		_rc	rc9
 Summary:	Library for 1394 Digital Camera Specification
 Summary(pl.UTF-8):	Biblioteka dla specyfikacji Kamera Cyfrowa 1394
 Name:		libdc1394
 Version:	2.0.0
-Release:	0.%{_rc}.1
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/libdc1394/%{name}-%{version}-%{_rc}.tar.gz
-# Source0-md5:	8955f1eef27a22ba209355ded5d1d003
+Source0:	http://dl.sourceforge.net/libdc1394/%{name}-%{version}.tar.gz
+# Source0-md5:	044dec62a3e73c799c0d1489a5eeadf3
+Patch0:		%{name}-link.patch
 URL:		http://sourceforge.net/projects/libdc1394/
-BuildRequires:	autoconf >= 2.59-9
-BuildRequires:	automake
-BuildRequires:	libraw1394-devel
+BuildRequires:	autoconf >= 2.60
+BuildRequires:	automake >= 1:1.9.6
+BuildRequires:	libraw1394-devel >= 1.2.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXv-devel
+Requires:	libraw1394 >= 1.2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -41,7 +42,7 @@ Summary:	libdc1394 header files
 Summary(pl.UTF-8):	Pliki nagłówkowe libdc1394
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	libraw1394-devel
+Requires:	libraw1394-devel >= 1.2.0
 
 %description devel
 libdc1394 header files.
@@ -62,7 +63,8 @@ Static libdc1394 library.
 Statyczna biblioteka libdc1394.
 
 %prep
-%setup -q -n %{name}-%{version}-%{_rc}
+%setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -92,6 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dc1394_reset_bus
 %attr(755,root,root) %{_bindir}/dc1394_vloopback
 %attr(755,root,root) %{_libdir}/libdc1394.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libdc1394.so.22
 
 %files devel
 %defattr(644,root,root,755)
