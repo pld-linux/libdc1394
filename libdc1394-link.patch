@@ -1,9 +1,8 @@
---- libdc1394-2.0.0/examples/Makefile.am.orig	2008-01-04 09:21:53.000000000 +0100
-+++ libdc1394-2.0.0/examples/Makefile.am	2008-01-07 21:13:23.295114640 +0100
-@@ -58,5 +58,5 @@
- if XVOK
+--- libdc1394-2.1.2/examples/Makefile.am.orig	2009-06-11 06:05:47.000000000 +0200
++++ libdc1394-2.1.2/examples/Makefile.am	2010-06-23 22:50:51.331445612 +0200
+@@ -48,4 +48,4 @@
+ 
  dc1394_multiview_CFLAGS = $(X_CFLAGS) $(XV_CFLAGS)
  dc1394_multiview_SOURCES = dc1394_multiview.c
--dc1394_multiview_LDADD = $(LDADD) ../dc1394/libdc1394.la $(X_LIBS) $(X_PRE_LIBS) $(XV_LIBS) -lX11 $(X_EXTRA_LIBS)
-+dc1394_multiview_LDADD = $(LDADD) ../dc1394/libdc1394.la $(X_LIBS) $(XV_LIBS) -lX11 $(X_EXTRA_LIBS)
- endif
+-dc1394_multiview_LDADD = $(LDADD) $(X_LIBS) $(X_PRE_LIBS) $(XV_LIBS) -lX11 $(X_EXTRA_LIBS)
++dc1394_multiview_LDADD = $(LDADD) $(X_LIBS) $(XV_LIBS) -lX11 $(X_EXTRA_LIBS)

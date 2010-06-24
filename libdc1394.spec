@@ -5,12 +5,12 @@
 Summary:	Library for 1394 Digital Camera Specification
 Summary(pl.UTF-8):	Biblioteka dla specyfikacji Kamera Cyfrowa 1394
 Name:		libdc1394
-Version:	2.0.2
-Release:	2
+Version:	2.1.2
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/libdc1394/%{name}-%{version}.tar.gz
-# Source0-md5:	c2dc94e9568765f34f7a23b31b9c2f6d
+Source0:	http://downloads.sourceforge.net/libdc1394/%{name}-%{version}.tar.gz
+# Source0-md5:	b85f1ade88d8d96688d5965ed8603d53
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-ac.patch
 URL:		http://sourceforge.net/projects/libdc1394/
@@ -18,11 +18,13 @@ BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.9.6
 BuildRequires:	libraw1394-devel >= 1.2.0
 BuildRequires:	libtool
+BuildRequires:	libusb-devel >= 1.0
 BuildRequires:	pkgconfig
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXv-devel
 Requires:	libraw1394 >= 1.2.0
+Requires:	libusb >= 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -44,6 +46,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe libdc1394
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	libraw1394-devel >= 1.2.0
+Requires:	libusb-devel >= 1.0
 
 %description devel
 libdc1394 header files.
