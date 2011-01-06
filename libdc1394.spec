@@ -5,12 +5,12 @@
 Summary:	Library for 1394 Digital Camera Specification
 Summary(pl.UTF-8):	Biblioteka dla specyfikacji Kamera Cyfrowa 1394
 Name:		libdc1394
-Version:	2.1.2
+Version:	2.1.3
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libdc1394/%{name}-%{version}.tar.gz
-# Source0-md5:	b85f1ade88d8d96688d5965ed8603d53
+# Source0-md5:	d8b2cbfae1b329fdeaa638da80427334
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-ac.patch
 URL:		http://sourceforge.net/projects/libdc1394/
@@ -86,6 +86,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# man pages for noinst examples
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/man1/{dc1394_multiview,grab_{color,gray,partial}_image}.1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
