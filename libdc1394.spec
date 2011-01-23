@@ -6,13 +6,15 @@ Summary:	Library for 1394 Digital Camera Specification
 Summary(pl.UTF-8):	Biblioteka dla specyfikacji Kamera Cyfrowa 1394
 Name:		libdc1394
 Version:	2.1.3
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libdc1394/%{name}-%{version}.tar.gz
 # Source0-md5:	d8b2cbfae1b329fdeaa638da80427334
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-ac.patch
+# libdc1394-2.1.2 vs libdc1394_avt-2.1.2 diff (http://www.alliedvisiontec.com/fileadmin/content/PDF/Software/AVT_software/zip_files/AVTFire4Linux3v0.src.tar/libdc1394_avt-2.1.2.tar.gz)
+Patch2:		%{name}-avt.patch
 URL:		http://sourceforge.net/projects/libdc1394/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.9.6
@@ -23,6 +25,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXv-devel
+Provides:	libdc1394(avt) = %{version}-%{release}
 Requires:	libraw1394 >= 1.2.0
 Requires:	libusb >= 1.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -44,6 +47,7 @@ http://www.1394ta.org/).
 Summary:	libdc1394 header files
 Summary(pl.UTF-8):	Pliki nagłówkowe libdc1394
 Group:		Development/Libraries
+Provides:	libdc1394-devel(avt) = %{version}-%{release}
 Requires:	%{name} = %{version}-%{release}
 Requires:	libraw1394-devel >= 1.2.0
 Requires:	libusb-devel >= 1.0
@@ -58,6 +62,7 @@ Pliki nagłówkowe libdc1394.
 Summary:	Static libdc1394 library
 Summary(pl.UTF-8):	Statyczna biblioteka libdc1394
 Group:		Development/Libraries
+Provides:	libdc1394-static(avt) = %{version}-%{release}
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
@@ -70,6 +75,7 @@ Statyczna biblioteka libdc1394.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__libtoolize}
@@ -89,6 +95,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # man pages for noinst examples
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/man1/{dc1394_multiview,grab_{color,gray,partial}_image}.1
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/man1/avt_singleview.1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
