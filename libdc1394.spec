@@ -17,6 +17,7 @@ Patch1:		%{name}-ac.patch
 # libdc1394-2.1.2 vs libdc1394_avt-2.1.2 diff (http://www.alliedvisiontec.com/fileadmin/content/PDF/Software/AVT_software/zip_files/AVTFire4Linux3v0.src.tar/libdc1394_avt-2.1.2.tar.gz)
 Patch2:		%{name}-avt.patch
 URL:		http://damien.douxchamps.net/ieee1394/libdc1394/
+BuildRequires:	SDL-devel
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.9.6
 BuildRequires:	libraw1394-devel >= 1.2.0
