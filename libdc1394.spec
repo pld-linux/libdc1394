@@ -35,7 +35,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %ifarch x32
 # Unresolved symbols pthread_join pthread_create on x32
-%define		skip_post_check_so	libdc1394.so
+%define		skip_post_check_so	libdc1394.so.22.1.8
 %endif
 
 %description
