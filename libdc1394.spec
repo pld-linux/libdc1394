@@ -1,21 +1,21 @@
 #
 # Conditional build:
 %bcond_without	static_libs	# don't build static library
-#
+
 Summary:	Library for 1394 Digital Camera Specification
 Summary(pl.UTF-8):	Biblioteka dla specyfikacji Kamera Cyfrowa 1394
 Name:		libdc1394
-Version:	2.1.3
-Release:	2
+Version:	2.2.1
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libdc1394/%{name}-%{version}.tar.gz
-# Source0-md5:	d8b2cbfae1b329fdeaa638da80427334
+# Source0-md5:	5c4b78bb8265d6dc971433ec1da381ab
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-ac.patch
 # libdc1394-2.1.2 vs libdc1394_avt-2.1.2 diff (http://www.alliedvisiontec.com/fileadmin/content/PDF/Software/AVT_software/zip_files/AVTFire4Linux3v0.src.tar/libdc1394_avt-2.1.2.tar.gz)
 Patch2:		%{name}-avt.patch
-URL:		http://sourceforge.net/projects/libdc1394/
+URL:		http://damien.douxchamps.net/ieee1394/libdc1394/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.9.6
 BuildRequires:	libraw1394-devel >= 1.2.0
@@ -107,11 +107,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/dc1394_reset_bus
-%attr(755,root,root) %{_bindir}/dc1394_vloopback
+#%attr(755,root,root) %{_bindir}/dc1394_vloopback
 %attr(755,root,root) %{_libdir}/libdc1394.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libdc1394.so.22
 %{_mandir}/man1/dc1394_reset_bus.1*
-%{_mandir}/man1/dc1394_vloopback.1*
+#%{_mandir}/man1/dc1394_vloopback.1*
 
 %files devel
 %defattr(644,root,root,755)
