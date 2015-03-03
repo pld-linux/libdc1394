@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_without	static_libs	# don't build static library
+%bcond_with	v4l1	# build with Video4Linux 1.x API (dropped in linux kernel 2.6.38)
 
 Summary:	Library for 1394 Digital Camera Specification
 Summary(pl.UTF-8):	Biblioteka dla specyfikacji Kamera Cyfrowa 1394
@@ -103,6 +104,11 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/man1/{dc1394_multiview,grab_{color,gray,partial}_image}.1
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/man1/avt_singleview.1
 
+%if %{without v4l1}
+# dc1394_vloopback not built if !HAVE_VIDEODEV, remove man page as well
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/man1/dc1394_vloopback.1
+%endif
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -113,11 +119,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/dc1394_reset_bus
-#%attr(755,root,root) %{_bindir}/dc1394_vloopback
 %attr(755,root,root) %{_libdir}/libdc1394.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libdc1394.so.22
 %{_mandir}/man1/dc1394_reset_bus.1*
-#%{_mandir}/man1/dc1394_vloopback.1*
+%if %{with v4l1}
+%attr(755,root,root) %{_bindir}/dc1394_vloopback
+%{_mandir}/man1/dc1394_vloopback.1*
+%endif
 
 %files devel
 %defattr(644,root,root,755)
