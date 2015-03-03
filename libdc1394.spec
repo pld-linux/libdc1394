@@ -22,13 +22,19 @@ BuildRequires:	libraw1394-devel >= 1.2.0
 BuildRequires:	libtool
 BuildRequires:	libusb-devel >= 1.0
 BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.583
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXv-devel
-Provides:	libdc1394(avt) = %{version}-%{release}
 Requires:	libraw1394 >= 1.2.0
 Requires:	libusb >= 1.0
+Provides:	libdc1394(avt) = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%ifarch x32
+# Unresolved symbols pthread_join pthread_create on x32
+%define		skip_post_check_so	libdc1394.so
+%endif
 
 %description
 libdc1394 is a library that is intended to provide a high level
@@ -47,10 +53,10 @@ http://www.1394ta.org/).
 Summary:	libdc1394 header files
 Summary(pl.UTF-8):	Pliki nagłówkowe libdc1394
 Group:		Development/Libraries
-Provides:	libdc1394-devel(avt) = %{version}-%{release}
 Requires:	%{name} = %{version}-%{release}
 Requires:	libraw1394-devel >= 1.2.0
 Requires:	libusb-devel >= 1.0
+Provides:	libdc1394-devel(avt) = %{version}-%{release}
 
 %description devel
 libdc1394 header files.
@@ -62,8 +68,8 @@ Pliki nagłówkowe libdc1394.
 Summary:	Static libdc1394 library
 Summary(pl.UTF-8):	Statyczna biblioteka libdc1394
 Group:		Development/Libraries
-Provides:	libdc1394-static(avt) = %{version}-%{release}
 Requires:	%{name}-devel = %{version}-%{release}
+Provides:	libdc1394-static(avt) = %{version}-%{release}
 
 %description static
 Static libdc1394 library.
