@@ -1,13 +1,13 @@
 #
 # Conditional build:
 %bcond_without	static_libs	# don't build static library
-%bcond_with	v4l1	# build with Video4Linux 1.x API (dropped in linux kernel 2.6.38)
+%bcond_with	v4l1		# build with Video4Linux 1.x API (dropped in linux kernel 2.6.38)
 
 Summary:	Library for 1394 Digital Camera Specification
 Summary(pl.UTF-8):	Biblioteka dla specyfikacji Kamera Cyfrowa 1394
 Name:		libdc1394
 Version:	2.2.1
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libdc1394/%{name}-%{version}.tar.gz
@@ -17,26 +17,24 @@ Patch1:		%{name}-ac.patch
 # libdc1394-2.1.2 vs libdc1394_avt-2.1.2 diff (http://www.alliedvisiontec.com/fileadmin/content/PDF/Software/AVT_software/zip_files/AVTFire4Linux3v0.src.tar/libdc1394_avt-2.1.2.tar.gz)
 Patch2:		%{name}-avt.patch
 URL:		http://damien.douxchamps.net/ieee1394/libdc1394/
-BuildRequires:	SDL-devel
+BuildRequires:	OpenGL-devel
+BuildRequires:	SDL-devel >= 1.2.4
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake >= 1:1.9.6
 BuildRequires:	libraw1394-devel >= 1.2.0
 BuildRequires:	libtool
 BuildRequires:	libusb-devel >= 1.0
+%{?with_v4l1:BuildRequires:	linux-libc-headers < 7:2.6.38}
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.583
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXv-devel
+Requires:	SDL >= 1.2.4
 Requires:	libraw1394 >= 1.2.0
 Requires:	libusb >= 1.0
 Provides:	libdc1394(avt) = %{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%ifarch x32
-# Unresolved symbols pthread_join pthread_create on x32
-%define		skip_post_check_so	libdc1394.so.22.1.8
-%endif
 
 %description
 libdc1394 is a library that is intended to provide a high level
