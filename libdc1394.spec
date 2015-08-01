@@ -4,14 +4,14 @@
 %bcond_with	v4l1		# build with Video4Linux 1.x API (dropped in linux kernel 2.6.38)
 
 Summary:	Library for 1394 Digital Camera Specification
-Summary(pl.UTF-8):	Biblioteka dla specyfikacji Kamera Cyfrowa 1394
+Summary(pl.UTF-8):	Biblioteka dla specyfikacji kamery cyfrowej 1394 (1394 Digital Camera)
 Name:		libdc1394
-Version:	2.2.1
-Release:	2
+Version:	2.2.3
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libdc1394/%{name}-%{version}.tar.gz
-# Source0-md5:	5c4b78bb8265d6dc971433ec1da381ab
+# Source0-md5:	443d0638e51054ff37fb8e551e07672a
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-ac.patch
 # libdc1394-2.1.2 vs libdc1394_avt-2.1.2 diff (http://www.alliedvisiontec.com/fileadmin/content/PDF/Software/AVT_software/zip_files/AVTFire4Linux3v0.src.tar/libdc1394_avt-2.1.2.tar.gz)
@@ -46,7 +46,7 @@ Specification (found at http://www.1394ta.org/).
 libdc1394 jest biblioteką, której założeniem jest dostarczenie
 interfejsu wysokiego poziomu dla twórców oprogramowania pragnących
 sterować kamerami skonstruowanymi w oparciu o IEEE 1394 zgodnie ze
-specyfikacją Kamera Cyfrowa 1394 (dostępną pod
+specyfikacją kamery cyfrowej 1394 (1394 Digital Camera, dostępną pod
 http://www.1394ta.org/).
 
 %package devel
