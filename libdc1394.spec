@@ -6,12 +6,12 @@
 Summary:	Library for 1394 Digital Camera Specification
 Summary(pl.UTF-8):	Biblioteka dla specyfikacji kamery cyfrowej 1394 (1394 Digital Camera)
 Name:		libdc1394
-Version:	2.2.5
+Version:	2.2.6
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libdc1394/%{name}-%{version}.tar.gz
-# Source0-md5:	01acfcde2cc85863b0acb90dcffa1659
+# Source0-md5:	9fad67bbff08fe2818d5ec81802ec89f
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-ac.patch
 # libdc1394-2.1.2 vs libdc1394_avt-2.1.2 diff (http://www.alliedvisiontec.com/fileadmin/content/PDF/Software/AVT_software/zip_files/AVTFire4Linux3v0.src.tar/libdc1394_avt-2.1.2.tar.gz)
@@ -119,7 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/dc1394_reset_bus
 %attr(755,root,root) %{_libdir}/libdc1394.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libdc1394.so.22
+%attr(755,root,root) %ghost %{_libdir}/libdc1394.so.25
 %{_mandir}/man1/dc1394_reset_bus.1*
 %if %{with v4l1}
 %attr(755,root,root) %{_bindir}/dc1394_vloopback
