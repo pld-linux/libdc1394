@@ -1,8 +1,8 @@
---- libdc1394-2.2.3/configure.ac.orig	2008-05-08 03:15:15.000000000 +0200
-+++ libdc1394-2.2.3/configure.ac	2008-07-12 01:01:23.882034707 +0200
-@@ -3,11 +3,7 @@
- AC_INIT([libdc1394],[2.0.2],[libdc1394-devel@lists.sf.net])
- AC_CONFIG_SRCDIR([dc1394/control.c])
+--- libdc1394-2.2.7/configure.ac.orig	2023-06-26 20:38:27.244818353 +0200
++++ libdc1394-2.2.7/configure.ac	2023-06-26 20:38:54.754669320 +0200
+@@ -8,11 +8,7 @@ m4_include([ax_check_framework.m4])
+  
+ AC_CANONICAL_SYSTEM
  
 -case "$host" in
 -*-*-cygwin* | *-*-mingw*)

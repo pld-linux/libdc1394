@@ -344,18 +344,17 @@ diff -Nur libdc1394-2.1.2/dc1394/bayer_avt.c libdc1394_avt-2.1.2/dc1394/bayer_av
 +}
 +
 +
-diff -Nur libdc1394-2.1.2/dc1394/bayer.c libdc1394_avt-2.1.2/dc1394/bayer.c
---- libdc1394-2.1.2/dc1394/bayer.c	2009-06-11 06:05:47.000000000 +0200
-+++ libdc1394_avt-2.1.2/dc1394/bayer.c	2010-01-12 15:47:01.000000000 +0100
-@@ -26,6 +26,7 @@
- #include <stdlib.h>
+--- libdc1394-2.2.7/dc1394/bayer.c.orig	2023-06-05 13:28:36.000000000 +0200
++++ libdc1394-2.2.7/dc1394/bayer.c	2023-06-26 20:41:42.207095485 +0200
+@@ -27,6 +27,7 @@
+ #include <stdint.h>
  #include <string.h>
  #include "conversions.h"
 +#include "vendor/avt.h"
  
  #define CLIP(in, out)\
     in = in < 0 ? 0 : in;\
-@@ -37,6 +38,16 @@
+@@ -38,6 +39,16 @@
     in = in > ((1<<bits)-1) ? ((1<<bits)-1) : in;\
     out=in;
  
@@ -372,7 +371,7 @@ diff -Nur libdc1394-2.1.2/dc1394/bayer.c libdc1394_avt-2.1.2/dc1394/bayer.c
  void
  ClearBorders(uint8_t *rgb, int sx, int sy, int w)
  {
-@@ -1997,6 +2008,15 @@
+@@ -2535,6 +2546,15 @@ dc1394_bayer_decoding_8bit(const uint8_t
          return dc1394_bayer_VNG(bayer, rgb, sx, sy, tile);
      case DC1394_BAYER_METHOD_AHD:
          return dc1394_bayer_AHD(bayer, rgb, sx, sy, tile);
@@ -388,7 +387,7 @@ diff -Nur libdc1394-2.1.2/dc1394/bayer.c libdc1394_avt-2.1.2/dc1394/bayer.c
      default:
          return DC1394_INVALID_BAYER_METHOD;
    }
-@@ -2006,6 +2026,10 @@
+@@ -2544,6 +2564,10 @@ dc1394_bayer_decoding_8bit(const uint8_t
  dc1394error_t
  dc1394_bayer_decoding_16bit(const uint16_t *restrict bayer, uint16_t *restrict rgb, uint32_t sx, uint32_t sy, dc1394color_filter_t tile, dc1394bayer_method_t method, uint32_t bits)
  {
@@ -399,7 +398,7 @@ diff -Nur libdc1394-2.1.2/dc1394/bayer.c libdc1394_avt-2.1.2/dc1394/bayer.c
      switch (method) {
      case DC1394_BAYER_METHOD_NEAREST:
          return dc1394_bayer_NearestNeighbor_uint16(bayer, rgb, sx, sy, tile, bits);
-@@ -2023,6 +2047,10 @@
+@@ -2561,6 +2585,10 @@ dc1394_bayer_decoding_16bit(const uint16
          return dc1394_bayer_VNG_uint16(bayer, rgb, sx, sy, tile, bits);
      case DC1394_BAYER_METHOD_AHD:
          return dc1394_bayer_AHD_uint16(bayer, rgb, sx, sy, tile, bits);
@@ -410,7 +409,7 @@ diff -Nur libdc1394-2.1.2/dc1394/bayer.c libdc1394_avt-2.1.2/dc1394/bayer.c
      default:
          return DC1394_INVALID_BAYER_METHOD;
      }
-@@ -2064,7 +2092,9 @@
+@@ -2602,7 +2630,9 @@ Adapt_buffer_bayer(dc1394video_frame_t *
  
      // bit depth is conserved for 16 bit and set to 8bit for 8bit:
      if ( (in->color_coding==DC1394_COLOR_CODING_RAW16) || 
@@ -421,7 +420,7 @@ diff -Nur libdc1394-2.1.2/dc1394/bayer.c libdc1394_avt-2.1.2/dc1394/bayer.c
          out->data_depth=in->data_depth;
      else
          out->data_depth=8;
-@@ -2148,6 +2178,15 @@
+@@ -2686,6 +2716,15 @@ dc1394_debayer_frames(dc1394video_frame_
              return dc1394_bayer_VNG(in->image, out->image, in->size[0], in->size[1], in->color_filter);
          case DC1394_BAYER_METHOD_AHD:
              return dc1394_bayer_AHD(in->image, out->image, in->size[0], in->size[1], in->color_filter);
@@ -437,7 +436,7 @@ diff -Nur libdc1394-2.1.2/dc1394/bayer.c libdc1394_avt-2.1.2/dc1394/bayer.c
          }
          break;
      case DC1394_COLOR_CODING_MONO16:
-@@ -2156,23 +2195,33 @@
+@@ -2694,23 +2733,33 @@ dc1394_debayer_frames(dc1394video_frame_
          if(DC1394_SUCCESS != Adapt_buffer_bayer(in,out,method))
              return DC1394_MEMORY_ALLOCATION_FAILURE;
              
@@ -1024,19 +1023,17 @@ diff -Nur libdc1394-2.1.2/dc1394/conversions.h libdc1394_avt-2.1.2/dc1394/conver
   */
  dc1394error_t
  dc1394_bayer_decoding_16bit(const uint16_t *bayer, uint16_t *rgb,
-diff -Nur libdc1394-2.1.2/dc1394/format7.c libdc1394_avt-2.1.2/dc1394/format7.c
---- libdc1394-2.1.2/dc1394/format7.c	2009-06-11 06:05:47.000000000 +0200
-+++ libdc1394_avt-2.1.2/dc1394/format7.c	2009-10-23 15:29:39.000000000 +0200
-@@ -35,6 +35,8 @@
+--- libdc1394-2.2.7/dc1394/format7.c.orig	2020-04-04 07:28:12.000000000 +0200
++++ libdc1394-2.2.7/dc1394/format7.c	2023-06-26 20:48:20.658270224 +0200
+@@ -34,6 +34,7 @@
+ #include "utils.h"
  #include "config.h"
  #include "log.h"
- 
 +#include "vendor/avt.h"
-+
- /*==========================================================================
-  * This function implements the handshaking available (and sometimes required)
-  * on some cameras that comply with the IIDC specs v1.30. Thanks to Yasutoshi
-@@ -189,7 +191,18 @@
+ 
+ #ifdef __MINGW32__
+ #include <unistd.h>
+@@ -193,7 +194,18 @@ _dc1394_format7_set_color_coding(dc1394c
      if (!dc1394_is_video_mode_scalable(video_mode))
          return DC1394_INVALID_VIDEO_MODE;
  
@@ -1056,7 +1053,7 @@ diff -Nur libdc1394-2.1.2/dc1394/format7.c libdc1394_avt-2.1.2/dc1394/format7.c
      color_coding=color_coding<<24;
      err=dc1394_set_format7_register(camera, video_mode,REG_CAMERA_FORMAT7_COLOR_CODING_ID, (uint32_t)color_coding);
      DC1394_ERR_RTN(err, "Format7 color coding setting failure");
-@@ -329,7 +342,18 @@
+@@ -333,7 +345,18 @@ dc1394_format7_get_color_coding(dc1394ca
      DC1394_ERR_RTN(err, "Could not get current color_id");
  
      value=value>>24;
@@ -1076,7 +1073,7 @@ diff -Nur libdc1394-2.1.2/dc1394/format7.c libdc1394_avt-2.1.2/dc1394/format7.c
  
      return err;
  }
-@@ -357,6 +381,21 @@
+@@ -361,6 +384,21 @@ dc1394_format7_get_color_codings(dc1394c
          }
      }
  
@@ -1098,7 +1095,7 @@ diff -Nur libdc1394-2.1.2/dc1394/format7.c libdc1394_avt-2.1.2/dc1394/format7.c
      return err;
  }
  
-@@ -661,7 +700,8 @@
+@@ -665,7 +703,8 @@ dc1394_format7_get_color_filter(dc1394ca
      if (!dc1394_is_video_mode_scalable(video_mode))
          return DC1394_INVALID_VIDEO_MODE;
  
@@ -7436,9 +7433,8 @@ diff -Nur libdc1394-2.1.2/examples/avt_singleview.c libdc1394_avt-2.1.2/examples
 +
 +    exit(0);
 +}
-diff -Nur libdc1394-2.1.2/examples/Makefile.am libdc1394_avt-2.1.2/examples/Makefile.am
---- libdc1394-2.1.2/examples/Makefile.am	2009-06-11 06:05:47.000000000 +0200
-+++ libdc1394_avt-2.1.2/examples/Makefile.am	2010-02-02 11:13:37.000000000 +0100
+--- libdc1394-2.2.7/examples/Makefile.am.orig	2023-06-26 20:45:22.699234310 +0200
++++ libdc1394-2.2.7/examples/Makefile.am	2023-06-26 20:50:47.940805659 +0200
 @@ -1,5 +1,5 @@
  MAINTAINERCLEANFILES = Makefile.in
 -dist_man_MANS = dc1394_multiview.1  dc1394_reset_bus.1  dc1394_vloopback.1  grab_color_image.1  grab_gray_image.1  grab_partial_image.1
@@ -7446,16 +7442,16 @@ diff -Nur libdc1394-2.1.2/examples/Makefile.am libdc1394_avt-2.1.2/examples/Make
  AM_CPPFLAGS = -I$(top_srcdir)
  
  A = grab_gray_image grab_partial_image grab_color_image \
-@@ -10,7 +10,7 @@
- if HAVE_LINUX
+@@ -18,7 +18,7 @@ if HAVE_VIDEODEV
  B += dc1394_vloopback
+ endif
  if HAVE_XV
 -A += dc1394_multiview
 +A += dc1394_multiview avt_singleview
  endif
- endif
- 
-@@ -42,6 +42,10 @@
+ if HAVE_OPENGL
+ GL_LIBS = -lGL
+@@ -62,6 +62,10 @@ dc1394_vloopback_LDADD = $(LDADD) -lm
  
  dc1394_reset_bus_SOURCES = dc1394_reset_bus.c
  
